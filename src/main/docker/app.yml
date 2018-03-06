@@ -1,0 +1,19 @@
+version: '2'
+services:
+    car_rental-app:
+        image: car_rental
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://car_rental-mysql:3306/car_rental?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=car_rental-elasticsearch:9300
+        ports:
+            - 8080:8080
+    car_rental-mysql:
+        extends:
+            file: mysql.yml
+            service: car_rental-mysql
+    car_rental-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: car_rental-elasticsearch
