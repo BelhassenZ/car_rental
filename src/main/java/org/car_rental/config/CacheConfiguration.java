@@ -43,6 +43,10 @@ public class CacheConfiguration {
             cm.createCache(org.car_rental.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(org.car_rental.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(org.car_rental.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(org.car_rental.domain.Booking.class.getName(), jcacheConfiguration);
+            cm.createCache(org.car_rental.domain.Car.class.getName(), jcacheConfiguration);
+            cm.createCache(org.car_rental.domain.Customer.class.getName(), jcacheConfiguration);
+            cm.createCache(org.car_rental.domain.Customer.class.getName() + ".books", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

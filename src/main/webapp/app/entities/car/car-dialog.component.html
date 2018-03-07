@@ -1,0 +1,69 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCarLabel" jhiTranslate="carRentalApp.car.home.createOrEditLabel">Create or edit a Car</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!car.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="car.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="carRentalApp.car.model" for="field_model">Model</label>
+            <input type="text" class="form-control" name="model" id="field_model"
+                [(ngModel)]="car.model" required/>
+            <div [hidden]="!(editForm.controls.model?.dirty && editForm.controls.model?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.model?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="carRentalApp.car.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="car.type" required/>
+            <div [hidden]="!(editForm.controls.type?.dirty && editForm.controls.type?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.type?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="carRentalApp.car.regNumber" for="field_regNumber">Reg Number</label>
+            <input type="text" class="form-control" name="regNumber" id="field_regNumber"
+                [(ngModel)]="car.regNumber" required/>
+            <div [hidden]="!(editForm.controls.regNumber?.dirty && editForm.controls.regNumber?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.regNumber?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="carRentalApp.car.available" for="field_available">Available</label>
+            <input type="checkbox" class="form-control" name="available" id="field_available"
+                [(ngModel)]="car.available" />
+            <div [hidden]="!(editForm.controls.available?.dirty && editForm.controls.available?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.available?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
